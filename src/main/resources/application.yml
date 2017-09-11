@@ -1,0 +1,17 @@
+server:
+  contextPath: /tightening
+  port: 8888
+  use-forward-headers: true
+
+slack:
+  # Get a token for your team from https://api.slack.com/custom-integrations/legacy-tokens
+  token: 
+
+active-directory:
+  application:
+    application-id: 6b3d47d6-a531-4ff7-81fe-adcef768b03e
+    client-secret-key: nTclXBh8ahsiquhYQNwHKUX9yT37ObwZU7iQeSeyM/Y=
+
+redirect:
+  host: localhost
+  uri: http://${redirect.host}:${server.port}${server.contextPath}/authorize

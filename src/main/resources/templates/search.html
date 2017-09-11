@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/home}">Tightening the slack</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Unknown Users
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/users}">All Unknown Users</a></li>
+                    <li><a th:href="@{/users(filter='hmrcaspire')}">HMRCAspire emails</a></li>
+                    <li><a th:href="@{/users(filter='capgemini')}">Unknown Capgemini emails</a></li>
+                    <li><a th:href="@{/users(filter='!hmrcaspire|capgemini')}">Other unknown emails</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="navbar-collapse collapse navbar-right">
+            <div th:switch="${#authentication}? ${#authorization.expression('isAuthenticated()')} : ${false}">
+                <ul th:case="${false}" class="navbar-btn btn btn-default">
+                    <a th:href="@{/login}">Sign
+                        in</a>
+                </ul>
+                <ul th:case="${true}" class="navbar-btn btn btn-default">
+                    <a th:href="@{/logout}">Sign out</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="form-horizontal" th:action="@{/search}">
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-8">
+                        <input type="text" class="form-control" id="q" name="q" th:value="${query!=null?query:''}" placeholder="Search Slack messages"/>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table th:if="${hits!=null}" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>text</th>
+                    <th>Slack userId</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hit:${hits}">
+                    <td class="" th:text="${hit.fields.date}"></td>
+                    <td class="" th:text="${hit.fields.messagetext}"></td>
+                    <td class="" th:text="${hit.fields.userid}"></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p></p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </footer>
+</div>
+
+</body>
+</html>
