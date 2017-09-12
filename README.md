@@ -61,10 +61,6 @@ We need to generate a client secret key to access Azure. Click on Keys and enter
 
 Lastly, change the following values in the src/main/resources/application.yaml file:
 
-* active-directory.application.application-id
-* active-directory.application.client-secret-key
-* redirect.host
-
 The `active-directory.application.application-id` should be set to the "Application ID" of your new Azure AD app, found on its "Properties" tab.
 
 The `active-directory.application.client-secret-key` should be set to the client secret key you noted down above.
