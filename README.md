@@ -17,7 +17,7 @@ Create the upstart job configuration:
 
 `sudo vi /etc/init/slack-tightener.conf`
 
-Example contents for this file are supplied below:
+Example contents for this file are supplied below (note that the ec2-user's bash profile is run to add the Maven bin directory to the path and set the JAVA_HOME environment variable):
 
 ```
 description "slack-tightener"
@@ -29,6 +29,7 @@ respawn limit 99 5
 
 script
   cd /home/ec2-user/slack-tightener
+  . /home/ec2-user/.bash_profile
   exec mvn spring-boot:run >> /var/log/slack-tightener.log 2>&1
 end script
 ```
