@@ -9,9 +9,9 @@ slack:
 
 active-directory:
   application:
-    application-id: 6b3d47d6-a531-4ff7-81fe-adcef768b03e
-    client-secret-key: nTclXBh8ahsiquhYQNwHKUX9yT37ObwZU7iQeSeyM/Y=
+    application-id: 8e51f213-73b1-46aa-8c8b-743d847d3184
+    client-secret-key: byDGoOsn4e/4qTRqBc5KdiR80eNVw4tlemSq1Z+Dy3c=
 
 redirect:
   host: localhost
-  uri: http://${redirect.host}:${server.port}${server.contextPath}/authorize
+  uri: http://${redirect.host}${server.contextPath}/authorize
