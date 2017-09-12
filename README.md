@@ -4,10 +4,10 @@ Tightens some of the slack in Slack community version. The main feature currentl
 ## Running the application
 The application is designed to be built (and optionally run) using Maven and Java 8. As such you will need Maven and the Java 8 JDK installed.
 
-To pull the code from GitHub: `git clone git@github.com:capgemini-psdu/slack-tightener.git`
-To build the application JAR: `mvn clean package`
-To run the application (using Maven): `mvn spring-boot:run`
-To run the application (executing the fat JAR): `java -jar ./target/slack-tightener-*.jar`
+* To pull the code from GitHub: `git clone git@github.com:capgemini-psdu/slack-tightener.git`
+* To build the application JAR: `mvn clean package`
+* To run the application (using Maven): `mvn spring-boot:run`
+* To run the application (executing the fat JAR): `java -jar ./target/slack-tightener-*.jar`
 
 ## Installing the application as an OS service
 
@@ -61,6 +61,12 @@ We need to generate a client secret key to access Azure. Click on Keys and enter
 
 Lastly, change the following values in the src/main/resources/application.yaml file:
 
-active-directory.application.application-id: <the "Application ID" for your new Azure AD app, found on the "Properties" tab.
-active-directory.application.client-secret-key: <the client secret key you noted down above>
-redirect.host: <the hostname that you intend to deploy the application to>
+* active-directory.application.application-id
+* active-directory.application.client-secret-key
+* redirect.host
+
+The `active-directory.application.application-id` should be set to the "Application ID" of your new Azure AD app, found on its "Properties" tab.
+
+The `active-directory.application.client-secret-key` should be set to the client secret key you noted down above.
+
+The `redirect.host` should be set to the hostname that you intend to deploy the application to.
